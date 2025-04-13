@@ -34,6 +34,7 @@ jobs:
           cd ssl-site
           git add observable-notebooks/migrationDashboard.js
           git commit -m "chore: sync updated dashboard module from Observable"
+          git pull --rebase origin auto/dashboard-update
           git push origin auto/dashboard-update
 
       - name: Create Pull Request
