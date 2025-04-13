@@ -21,7 +21,7 @@ jobs:
 
       - name: Clone Next.js Repo
         run: |
-          git clone https://x-access-token:${{ secrets.NEXTJS_REPO_TOKEN }}@github.com/YOUR_USERNAME/secondstreetlabs-site.git nextjs-repo
+          git clone https://x-access-token:${{ secrets.NEXTJS_REPO_TOKEN }}@github.com/kennonstewart/secondstreetlabs-site.git nextjs-repo
           cd nextjs-repo
           git checkout -b auto/dashboard-update || git checkout auto/dashboard-update
 
