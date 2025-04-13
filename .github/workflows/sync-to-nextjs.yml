@@ -29,13 +29,13 @@ jobs:
         run: |
           cp migration-analysis/notebooks/migrationDashboard.js ssl-site/observable-notebooks/
 
-      - name: Commit + Push Changes
+      - name: Commit + Push Changes (Force Merge)
         run: |
           cd ssl-site
           git add observable-notebooks/migrationDashboard.js
-          git commit -m "chore: sync updated dashboard module from Observable"
-          git pull --rebase origin auto/dashboard-update
-          git push origin auto/dashboard-update
+          git commit -m "chore: sync updated dashboard module from Observable" || echo "No changes to commit"
+          git pull --rebase origin auto/dashboard-update || git rebase --skip
+          git push -f origin auto/dashboard-update || echo "Push failed, manual intervention required"
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v5
