@@ -19,7 +19,7 @@ export function chart() {
         y2: d => d.dest_lat,
         stroke: "steelblue",
         strokeOpacity: 0.6,
-        strokeWidth: d => Math.sqrt(d.migrants) / 11
+        strokeWidth: d => Math.sqrt(d.migrants) / 12
       })
     ]
   });
