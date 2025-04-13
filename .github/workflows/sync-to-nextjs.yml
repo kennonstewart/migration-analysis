@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]  # Adjust if your default branch is not `main`
     paths:
-      - 'dist/migrationDashboard.js'
+      - 'migration-analysis/notebooks/migrationDashboard.js'
 
 jobs:
   push-dashboard:
