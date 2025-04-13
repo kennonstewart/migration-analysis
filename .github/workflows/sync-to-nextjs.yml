@@ -40,7 +40,7 @@ jobs:
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.NEXTJS_REPO_TOKEN }}
-          path: ssl-site
+          path: ssl-site/observable-notebooks/migrationDashboard.js
           branch: auto/dashboard-update
           title: "Update migration dashboard"
           body: "This PR syncs the latest build of the Observable dashboard module."
