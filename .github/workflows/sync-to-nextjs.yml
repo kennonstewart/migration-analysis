@@ -27,6 +27,7 @@ jobs:
 
       - name: Copy Dashboard File
         run: |
+          mkdir -p ssl-site/observable-notebooks
           cp migration-analysis/notebooks/migrationDashboard.js ssl-site/observable-notebooks/
 
       - name: Commit + Push Changes (Force Merge)
