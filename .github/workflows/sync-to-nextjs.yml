@@ -1,0 +1,46 @@
+name: Sync Dashboard to Next.js Repo
+
+on:
+  push:
+    branches: [main]  # Adjust if your default branch is not `main`
+    paths:
+      - 'dist/migrationDashboard.js'
+
+jobs:
+  push-dashboard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Observable Repo
+        uses: actions/checkout@v3
+
+      - name: Configure Git
+        run: |
+          git config --global user.email "action@github.com"
+          git config --global user.name "GitHub Action"
+
+      - name: Clone Next.js Repo
+        run: |
+          git clone https://x-access-token:${{ secrets.NEXTJS_REPO_TOKEN }}@github.com/YOUR_USERNAME/secondstreetlabs-site.git nextjs-repo
+          cd nextjs-repo
+          git checkout -b auto/dashboard-update || git checkout auto/dashboard-update
+
+      - name: Copy Dashboard File
+        run: |
+          cp dist/migrationDashboard.js nextjs-repo/observable-notebooks/
+
+      - name: Commit + Push Changes
+        run: |
+          cd nextjs-repo
+          git add observable-notebooks/migrationDashboard.js
+          git commit -m "chore: sync updated dashboard module from Observable"
+          git push origin auto/dashboard-update
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v5
+        with:
+          token: ${{ secrets.NEXTJS_REPO_TOKEN }}
+          path: nextjs-repo
+          branch: auto/dashboard-update
+          title: "Update migration dashboard"
+          body: "This PR syncs the latest build of the Observable dashboard module."
