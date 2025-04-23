@@ -1,11 +1,11 @@
 import { plot, line, geo } from "@observablehq/plot";
 import * as d3 from "d3";
 import { feature } from "topojson-client";
-import us from "@observablehq/us-atlas/us-10m.json" assert { type: "json" };
 
-const states = feature(us, us.objects.states);
+export async function chart() {
+  const us = await d3.json("https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json");
+  const states = feature(us, us.objects.states);
 
-export function chart() {
   return plot({
     projection: "albers-usa",
     width: 800,
@@ -24,3 +24,4 @@ export function chart() {
     ]
   });
 }
+
