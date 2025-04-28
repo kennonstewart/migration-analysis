@@ -17,7 +17,7 @@ export async function chart() {
         y1: d => d.origin_lat,
         x2: d => d.dest_lon,
         y2: d => d.dest_lat,
-        stroke: "steelblue",
+        stroke: "darkblue",
         strokeOpacity: 0.6,
         strokeWidth: d => Math.sqrt(d.migrants) / 12
       })
